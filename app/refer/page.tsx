@@ -3,6 +3,8 @@
 import { useState } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import { useAppDispatch, useAppSelector } from "@/store/hooks";
+import { signupReferrer, resetReferral } from "@/store/slices/referrals.slice";
 
 const steps = [
   {
@@ -45,33 +47,28 @@ const faqs = [
   },
 ];
 
-function generateCode(name: string, email: string): string {
-  const slug = name
-    .toLowerCase()
-    .trim()
-    .replace(/\s+/g, "-")
-    .replace(/[^a-z0-9-]/g, "");
-  const hash = btoa(email).replace(/[^a-z0-9]/gi, "").slice(0, 4).toLowerCase();
-  return `${slug}-${hash}`;
-}
 
 export default function ReferPage() {
+  const dispatch = useAppDispatch();
+  const { code: reduxCode, loading, error } = useAppSelector((s) => s.referrals);
+
   const [name, setName]       = useState("");
   const [email, setEmail]     = useState("");
-  const [code, setCode]       = useState("");
   const [copied, setCopied]   = useState(false);
   const [openFaq, setOpenFaq] = useState<number | null>(null);
 
   const baseUrl =
     typeof window !== "undefined" ? window.location.origin : "https://viklance.dev";
 
-  const referralUrl = `${baseUrl}/r/${code}`;
+  const code = reduxCode;
+  const referralUrl = code ? `${baseUrl}/r/${code}` : "";
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const generated = generateCode(name, email);
-    setCode(generated);
-    sessionStorage.setItem("viklance_ref_owner", generated);
+    const result = await dispatch(signupReferrer({ name, email }));
+    if (signupReferrer.fulfilled.match(result)) {
+      sessionStorage.setItem("viklance_ref_owner", result.payload);
+    }
   };
 
   const copy = () => {
@@ -155,6 +152,11 @@ export default function ReferPage() {
               <div>
                 {!code ? (
                   <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+                    {error && (
+                      <div className="bg-red-50 border border-red-200 text-red-700 text-sm font-medium px-4 py-3 rounded-xl">
+                        {error}
+                      </div>
+                    )}
                     <div className="flex flex-col gap-1.5">
                       <label className="text-[11px] font-semibold tracking-widest uppercase text-neutral-600">
                         Full name
@@ -183,9 +185,12 @@ export default function ReferPage() {
                     </div>
                     <button
                       type="submit"
-                      className="mt-1 bg-neutral-900 text-white font-bold py-3.5 rounded-xl text-sm hover:bg-neutral-700 transition-colors"
+                      disabled={loading}
+                      className="mt-1 bg-neutral-900 text-white font-bold py-3.5 rounded-xl text-sm hover:bg-neutral-700 transition-colors disabled:opacity-50 flex items-center justify-center gap-2"
                     >
-                      Generate my referral link
+                      {loading ? (
+                        <><svg className="animate-spin" width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="5.5" stroke="currentColor" strokeWidth="1.5" strokeDasharray="22" strokeDashoffset="10" strokeLinecap="round" /></svg>Generating...</>
+                      ) : "Generate my referral link"}
                     </button>
                   </form>
                 ) : (
@@ -232,7 +237,7 @@ export default function ReferPage() {
 
                     <div className="flex items-center gap-3">
                       <button
-                        onClick={() => { setCode(""); setName(""); setEmail(""); }}
+                        onClick={() => { dispatch(resetReferral()); setName(""); setEmail(""); }}
                         className="flex-1 border border-neutral-200 bg-white text-neutral-700 font-semibold py-3 rounded-xl text-sm hover:border-neutral-400 hover:text-neutral-900 transition-all"
                       >
                         Generate different link
