@@ -152,22 +152,22 @@ export default function ContactPage() {
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div className="flex flex-col gap-1.5">
                         <label className="text-[11px] font-semibold tracking-widest uppercase text-neutral-600">Name</label>
-                        <input type="text" required value={name} onChange={(e) => setName(e.target.value)} placeholder="John Doe" className="border border-neutral-300 bg-white rounded-xl px-4 py-3 text-sm text-neutral-900 placeholder:text-neutral-400 outline-none focus:border-neutral-600 transition-colors" />
+                        <input type="text" required value={name} onChange={(e) => setName(e.target.value)} placeholder="John Doe" className="border border-neutral-300 bg-white rounded-xl px-4 py-3 text-base text-neutral-900 placeholder:text-neutral-400 outline-none focus:border-neutral-600 transition-colors" />
                       </div>
                       <div className="flex flex-col gap-1.5">
                         <label className="text-[11px] font-semibold tracking-widest uppercase text-neutral-600">Email</label>
-                        <input type="email" required value={email} onChange={(e) => setEmail(e.target.value)} placeholder="john@company.com" className="border border-neutral-300 bg-white rounded-xl px-4 py-3 text-sm text-neutral-900 placeholder:text-neutral-400 outline-none focus:border-neutral-600 transition-colors" />
+                        <input type="email" required value={email} onChange={(e) => setEmail(e.target.value)} placeholder="john@company.com" className="border border-neutral-300 bg-white rounded-xl px-4 py-3 text-base text-neutral-900 placeholder:text-neutral-400 outline-none focus:border-neutral-600 transition-colors" />
                       </div>
                     </div>
 
                     <div className="flex flex-col gap-1.5">
                       <label className="text-[11px] font-semibold tracking-widest uppercase text-neutral-600">Company / Project name</label>
-                      <input type="text" value={company} onChange={(e) => setCompany(e.target.value)} placeholder="Acme Inc. (optional)" className="border border-neutral-300 bg-white rounded-xl px-4 py-3 text-sm text-neutral-900 placeholder:text-neutral-400 outline-none focus:border-neutral-600 transition-colors" />
+                      <input type="text" value={company} onChange={(e) => setCompany(e.target.value)} placeholder="Acme Inc. (optional)" className="border border-neutral-300 bg-white rounded-xl px-4 py-3 text-base text-neutral-900 placeholder:text-neutral-400 outline-none focus:border-neutral-600 transition-colors" />
                     </div>
 
                     <div className="flex flex-col gap-1.5">
                       <label className="text-[11px] font-semibold tracking-widest uppercase text-neutral-600">Service</label>
-                      <select required value={service} onChange={(e) => setService(e.target.value)} className="border border-neutral-300 bg-white rounded-xl px-4 py-3 text-sm text-neutral-900 outline-none focus:border-neutral-600 transition-colors appearance-none">
+                      <select required value={service} onChange={(e) => setService(e.target.value)} className="border border-neutral-300 bg-white rounded-xl px-4 py-3 text-base text-neutral-900 outline-none focus:border-neutral-600 transition-colors appearance-none">
                         <option value="" disabled>Select a service</option>
                         <option value="Web Application">Web Application</option>
                         <option value="Mobile App">Mobile App</option>
@@ -179,7 +179,7 @@ export default function ContactPage() {
 
                     <div className="flex flex-col gap-1.5">
                       <label className="text-[11px] font-semibold tracking-widest uppercase text-neutral-600">Budget range</label>
-                      <select value={budget} onChange={(e) => setBudget(e.target.value)} className="border border-neutral-300 bg-white rounded-xl px-4 py-3 text-sm text-neutral-900 outline-none focus:border-neutral-600 transition-colors appearance-none">
+                      <select value={budget} onChange={(e) => setBudget(e.target.value)} className="border border-neutral-300 bg-white rounded-xl px-4 py-3 text-base text-neutral-900 outline-none focus:border-neutral-600 transition-colors appearance-none">
                         <option value="">Select a range (optional)</option>
                         <option value="Under ₦1M">Under ₦1,000,000</option>
                         <option value="₦1M–₦5M">₦1,000,000 – ₦5,000,000</option>
@@ -191,7 +191,7 @@ export default function ContactPage() {
 
                     <div className="flex flex-col gap-1.5">
                       <label className="text-[11px] font-semibold tracking-widest uppercase text-neutral-600">Message</label>
-                      <textarea required rows={5} value={message} onChange={(e) => setMessage(e.target.value)} placeholder="Tell us about your project, timeline, and what you need built..." className="border border-neutral-300 bg-white rounded-xl px-4 py-3 text-sm text-neutral-900 placeholder:text-neutral-400 outline-none focus:border-neutral-600 transition-colors resize-none" />
+                      <textarea required rows={5} value={message} onChange={(e) => setMessage(e.target.value)} placeholder="Tell us about your project, timeline, and what you need built..." className="border border-neutral-300 bg-white rounded-xl px-4 py-3 text-base text-neutral-900 placeholder:text-neutral-400 outline-none focus:border-neutral-600 transition-colors resize-none" />
                     </div>
 
                     <button type="submit" disabled={loading} className="mt-1 bg-neutral-900 text-white font-bold py-3.5 rounded-xl text-sm hover:bg-neutral-700 transition-colors disabled:opacity-50 flex items-center justify-center gap-2">
