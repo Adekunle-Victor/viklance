@@ -20,7 +20,7 @@ const steps = [
   {
     num: "03",
     title: "Get paid",
-    desc: "When your referral signs a contract with Viklance, we send you ₦100,000. No cap, no expiry.",
+    desc: "When your referral signs a contract with Viklance Orbit, we send you ₦100,000. No cap, no expiry.",
   },
 ];
 
@@ -31,11 +31,11 @@ const faqs = [
   },
   {
     q: "Is there a limit on how many people I can refer?",
-    a: "No limit at all. Refer 1 or refer 100 — you earn ₦100,000 for every single one that converts.",
+    a: "No limit at all. Refer 1 or refer 100, you earn ₦100,000 for every single one that converts.",
   },
   {
     q: "What counts as a conversion?",
-    a: "A conversion is when the person you referred signs a paid engagement contract with Viklance.",
+    a: "A conversion is when the person you referred signs a paid engagement contract with Viklance Orbit.",
   },
   {
     q: "How do you track my referrals?",
@@ -43,7 +43,7 @@ const faqs = [
   },
   {
     q: "What payment methods do you support?",
-    a: "Bank transfer, Paystack, or PayPal — whichever works best for you.",
+    a: "Bank transfer, or whichever payment methods works best for you.",
   },
 ];
 
@@ -105,7 +105,7 @@ export default function ReferPage() {
               <span className="text-neutral-400">Earn ₦100,000.</span>
             </h1>
             <p className="text-base sm:text-lg text-neutral-700 max-w-xl leading-relaxed">
-              Know someone who needs software built? Share your unique link —
+              Know someone who needs software built? Share your unique link,
               earn a flat ₦100,000 for every client that signs a contract. No limits.
             </p>
           </div>
@@ -231,7 +231,7 @@ export default function ReferPage() {
                     </div>
 
                     <p className="text-xs text-neutral-400 leading-relaxed">
-                      Save this link — it&apos;s unique to you. Share it anywhere and
+                      Save this link, it&apos;s unique to you. Share it anywhere and
                       we&apos;ll track every inquiry that comes through it.
                     </p>
 

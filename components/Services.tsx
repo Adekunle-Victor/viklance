@@ -22,7 +22,7 @@ export default function Services() {
             </h2>
           </div>
           <p className="text-sm text-neutral-600 max-w-xs leading-relaxed">
-            Full-spectrum engineering from concept to production — and beyond.
+            Full-spectrum engineering from concept to production and beyond.
           </p>
         </div>
 

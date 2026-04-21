@@ -6,7 +6,7 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Viklance | Software Development Agency",
+  title: "Viklance Orbit | Software Development Agency",
   description:
     "We build exceptional digital products. From concept to launch, we craft software that drives growth.",
 };

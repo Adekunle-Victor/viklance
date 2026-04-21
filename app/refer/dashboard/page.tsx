@@ -127,7 +127,7 @@ export default function Dashboard() {
           <p className="text-xs text-neutral-400 text-center mt-8">
             Questions?{" "}
             <a href="mailto:hello@viklance.dev" className="text-neutral-600 hover:underline">
-              hello@viklance.dev
+              hello@viklance.com
             </a>
           </p>
         </div>

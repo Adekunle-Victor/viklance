@@ -26,7 +26,7 @@ const values = [
   {
     num: "03",
     title: "Speed without chaos",
-    desc: "We move fast because we plan well — not because we skip tests, ignore edge cases, or cut architectural corners.",
+    desc: "We move fast because we plan well, not because we skip tests, ignore edge cases, or cut architectural corners.",
   },
   {
     num: "04",
@@ -42,10 +42,10 @@ const stack = [
 ];
 
 const team = [
-  { name: "Victor A.",   role: "Founder & Lead Engineer",   initials: "VA" },
-  { name: "Tolu M.",     role: "Product Designer",           initials: "TM" },
-  { name: "Dami O.",     role: "Backend Engineer",           initials: "DO" },
-  { name: "Chidi N.",    role: "Mobile Engineer",            initials: "CN" },
+  { name: "Victor Adekunle",   role: "Founder & Lead Software Engineer", initials: "VA" },
+  { name: "Moses Adeosun.",     role: "Business Analyst", initials: "MA" },
+  { name: "Divine Onofeghara",     role: "Client Acquisition Specialist/ Software Engineer", initials: "DO" },
+  { name: "Amoke Paul",    role: "Quality Assurance Specialist", initials: "AP" },
 ];
 
 export default function AboutPage() {
@@ -77,7 +77,7 @@ export default function AboutPage() {
               <span className="text-neutral-400">who give a damn.</span>
             </h1>
             <p className="text-base sm:text-lg text-neutral-700 max-w-xl leading-relaxed">
-              Viklance is a close-knit team of engineers and designers obsessed with
+              Viklance Orbit is a close-knit team of engineers and non-tech teams who are obsessed with
               craft. We partner with startups and scale-ups to turn ambitious ideas into
               reliable, beautifully executed software.
             </p>
@@ -100,14 +100,14 @@ export default function AboutPage() {
               </div>
               <div className="flex flex-col gap-5 text-base text-neutral-700 leading-relaxed">
                 <p>
-                  Viklance started as a two-person operation — a developer and a designer
+                  Viklance Orbit started as a one-person operation, a developer who is 
                   tired of watching great product ideas die because of bad engineering
                   partners. We believed there was a better way to build software for
                   growing companies.
                 </p>
                 <p>
                   Five years in, we&apos;ve shipped over 50 projects across fintech, SaaS,
-                  e-commerce, and AI — and we still treat every engagement like it&apos;s
+                  e-commerce, and AI and we still treat every engagement like it&apos;s
                   our own product on the line.
                 </p>
                 <p>

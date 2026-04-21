@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Footer from "@/components/Footer";
 
 const links = [
   { label: "Services", href: "#services" },
@@ -19,6 +20,11 @@ export default function Navbar() {
     window.addEventListener("scroll", fn, { passive: true });
     return () => window.removeEventListener("scroll", fn);
   }, []);
+
+  useEffect(() => {
+    document.body.style.overflow = open ? "hidden" : "";
+    return () => { document.body.style.overflow = ""; };
+  }, [open]);
 
   const go = (href: string) => {
     setOpen(false);
@@ -52,7 +58,7 @@ export default function Navbar() {
               scrolled ? "text-neutral-900" : "text-neutral-900"
             }`}
           >
-            Viklance
+            Viklance Orbit
           </button>
 
           <nav className="hidden md:flex items-center gap-8">
@@ -83,7 +89,7 @@ export default function Navbar() {
           {/* hamburger */}
           <button
             onClick={() => setOpen((v) => !v)}
-            className="md:hidden flex flex-col gap-[5px] p-1"
+            className="md:hidden flex flex-col gap-1.25 p-1"
             aria-label="menu"
           >
             <span className={`block w-5 h-[1.5px] transition-all bg-neutral-900 ${open ? "rotate-45 translate-y-[6.5px]" : ""}`} />
@@ -93,24 +99,29 @@ export default function Navbar() {
         </div>
       </header>
 
-      {/* mobile overlay */}
+      {/* mobile overlay — sits at z-50 so the header above renders on top naturally */}
       {open && (
-        <div className="fixed inset-0 z-40 bg-neutral-950 flex flex-col items-center justify-center gap-8">
-          {links.map((l) => (
+        <div className="fixed inset-0 z-40 bg-neutral-950 flex flex-col pt-16">
+          {/* nav links */}
+          <div className="flex-1 flex flex-col justify-center px-6 gap-2">
+            {links.map((l) => (
+              <button
+                key={l.label}
+                onClick={() => go(l.href)}
+                className="text-left text-4xl font-black text-white hover:text-neutral-400 transition-colors tracking-tight py-2"
+              >
+                {l.label}
+              </button>
+            ))}
             <button
-              key={l.label}
-              onClick={() => go(l.href)}
-              className="text-4xl font-black text-white hover:text-neutral-400 transition-colors tracking-tight"
+              onClick={() => go("/contact")}
+              className="mt-6 self-start px-8 py-3 rounded-full bg-white text-neutral-900 text-sm font-bold hover:bg-neutral-200 transition-colors"
             >
-              {l.label}
+              Let&apos;s talk
             </button>
-          ))}
-          <button
-            onClick={() => go("/contact")}
-            className="mt-4 px-8 py-3 rounded-full bg-white text-neutral-900 text-sm font-bold hover:bg-neutral-200 transition-colors"
-          >
-            Let&apos;s talk
-          </button>
+          </div>
+
+          <Footer />
         </div>
       )}
     </>

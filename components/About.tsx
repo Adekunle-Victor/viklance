@@ -89,13 +89,13 @@ export default function About() {
               <span className="text-neutral-500">who give a damn.</span>
             </h2>
             <p className="text-base text-neutral-300 leading-relaxed mb-4">
-              Viklance is a close-knit team of engineers and designers who obsess
+              Viklance Orbit is a close-knit team of engineers and non-tech teams who are obsessed with
               over craft. We partner with startups and scale-ups to turn ambitious
               ideas into reliable, beautifully executed software.
             </p>
             <p className="text-base text-neutral-300 leading-relaxed">
               We write clean code, ship on time, and stay involved long after
-              launch — because the best software is never truly finished.
+              launch because the best software is never truly finished.
             </p>
             <a
               href="#contact"
