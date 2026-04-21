@@ -5,15 +5,19 @@ import { useRouter } from "next/navigation";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
-import { fetchDashboard } from "@/store/slices/referrals.slice";
+import { fetchDashboard, requestPayout, resetPayoutState } from "@/store/slices/referrals.slice";
+
+const METHODS = ["Bank Transfer", "Paystack", "PayPal"];
 
 export default function Dashboard() {
   const router   = useRouter();
   const dispatch = useAppDispatch();
-  const { dashboard, loading, error } = useAppSelector((s) => s.referrals);
+  const { dashboard, loading, error, payoutLoading, payoutError, payoutSuccess } = useAppSelector((s) => s.referrals);
 
-  const [code, setCode]     = useState<string | null>(null);
-  const [copied, setCopied] = useState(false);
+  const [code, setCode]         = useState<string | null>(null);
+  const [copied, setCopied]     = useState(false);
+  const [showPayout, setShowPayout] = useState(false);
+  const [method, setMethod]     = useState(METHODS[0]);
 
   const baseUrl = typeof window !== "undefined" ? window.location.origin : "https://viklance.dev";
 
@@ -32,6 +36,16 @@ export default function Dashboard() {
     navigator.clipboard.writeText(`${baseUrl}/r/${code}`);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
+  };
+
+  const submitPayout = async () => {
+    if (!code || !dashboard) return;
+    await dispatch(requestPayout({ ref_code: code, amount: dashboard.earned, method }));
+  };
+
+  const closePayout = () => {
+    setShowPayout(false);
+    dispatch(resetPayoutState());
   };
 
   if (!code) return null;
@@ -116,12 +130,13 @@ export default function Dashboard() {
                 </>
               )}
             </div>
-            <a
-              href="mailto:hello@viklance.dev?subject=Payout Request"
-              className="inline-flex items-center justify-center gap-2 bg-white text-neutral-900 font-bold px-6 py-3 rounded-xl text-sm hover:bg-neutral-200 transition-colors"
+            <button
+              onClick={() => setShowPayout(true)}
+              disabled={!dashboard || dashboard.earned === 0}
+              className="inline-flex items-center justify-center gap-2 bg-white text-neutral-900 font-bold px-6 py-3 rounded-xl text-sm hover:bg-neutral-200 transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
             >
               Request payout
-            </a>
+            </button>
           </div>
 
           <p className="text-xs text-neutral-400 text-center mt-8">
@@ -132,6 +147,82 @@ export default function Dashboard() {
           </p>
         </div>
       </main>
+      {/* Payout modal */}
+      {showPayout && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 px-4">
+          <div className="bg-white rounded-2xl shadow-xl w-full max-w-sm p-6">
+            {payoutSuccess ? (
+              <div className="flex flex-col items-center gap-4 py-4 text-center">
+                <div className="w-12 h-12 rounded-full bg-neutral-900 flex items-center justify-center">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                    <path d="M4 10.5l4 4L16 6" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </div>
+                <div>
+                  <p className="text-base font-black text-neutral-900 mb-1">Request sent!</p>
+                  <p className="text-sm text-neutral-500">We&apos;ll process your payout within 7 days.</p>
+                </div>
+                <button onClick={closePayout} className="mt-2 text-sm font-semibold text-neutral-500 hover:text-neutral-900 underline underline-offset-2 transition-colors">
+                  Close
+                </button>
+              </div>
+            ) : (
+              <>
+                <h2 className="text-sm font-black text-neutral-900 mb-1">Request payout</h2>
+                <p className="text-sm text-neutral-500 mb-6">
+                  You have <span className="font-bold text-neutral-900">₦{dashboard?.earned.toLocaleString()}</span> pending. Choose how you&apos;d like to receive it.
+                </p>
+
+                {payoutError && (
+                  <div className="bg-red-50 border border-red-200 text-red-700 text-sm font-medium px-4 py-3 rounded-xl mb-4">
+                    {payoutError}
+                  </div>
+                )}
+
+                <div className="flex flex-col gap-2 mb-6">
+                  {METHODS.map((m) => (
+                    <button
+                      key={m}
+                      onClick={() => setMethod(m)}
+                      className={`flex items-center gap-3 px-4 py-3 rounded-xl border text-sm font-semibold transition-all ${
+                        method === m
+                          ? "border-neutral-900 bg-neutral-900 text-white"
+                          : "border-neutral-200 text-neutral-700 hover:border-neutral-400"
+                      }`}
+                    >
+                      {method === m && (
+                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                          <path d="M2 7l3.5 3.5L12 3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                        </svg>
+                      )}
+                      {m}
+                    </button>
+                  ))}
+                </div>
+
+                <div className="flex items-center gap-3">
+                  <button
+                    onClick={closePayout}
+                    className="flex-1 px-4 py-2.5 text-sm font-semibold text-neutral-600 hover:text-neutral-900 border border-neutral-200 rounded-xl hover:border-neutral-400 transition-colors"
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    onClick={submitPayout}
+                    disabled={payoutLoading}
+                    className="flex-1 px-4 py-2.5 text-sm font-semibold bg-neutral-900 text-white rounded-xl hover:bg-neutral-700 transition-colors disabled:opacity-50 flex items-center justify-center gap-2"
+                  >
+                    {payoutLoading ? (
+                      <><svg className="animate-spin" width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="5.5" stroke="currentColor" strokeWidth="1.5" strokeDasharray="22" strokeDashoffset="10" strokeLinecap="round" /></svg>Sending...</>
+                    ) : "Confirm"}
+                  </button>
+                </div>
+              </>
+            )}
+          </div>
+        </div>
+      )}
+
       <Footer />
     </>
   );

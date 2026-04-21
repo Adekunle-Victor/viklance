@@ -11,13 +11,16 @@ interface DashboardData {
 }
 
 interface ReferralsState {
-  code:      string | null;
-  dashboard: DashboardData | null;
-  loading:   boolean;
-  error:     string | null;
+  code:           string | null;
+  dashboard:      DashboardData | null;
+  loading:        boolean;
+  error:          string | null;
+  payoutLoading:  boolean;
+  payoutError:    string | null;
+  payoutSuccess:  boolean;
 }
 
-const initialState: ReferralsState = { code: null, dashboard: null, loading: false, error: null };
+const initialState: ReferralsState = { code: null, dashboard: null, loading: false, error: null, payoutLoading: false, payoutError: null, payoutSuccess: false };
 
 export const signupReferrer = createAsyncThunk(
   "referrals/signup",
@@ -50,11 +53,26 @@ export const trackClick = createAsyncThunk(
   }
 );
 
+export const requestPayout = createAsyncThunk(
+  "referrals/requestPayout",
+  async ({ ref_code, amount, method }: { ref_code: string; amount: number; method: string }, { rejectWithValue }) => {
+    const res  = await fetch(`${API}/api/payouts`, {
+      method:  "POST",
+      headers: { "Content-Type": "application/json" },
+      body:    JSON.stringify({ ref_code, amount, method }),
+    });
+    const data = await res.json();
+    if (!res.ok) return rejectWithValue(data.error ?? "Request failed");
+    return data;
+  }
+);
+
 const referralsSlice = createSlice({
   name: "referrals",
   initialState,
   reducers: {
-    resetReferral: (state) => { state.code = null; state.error = null; },
+    resetReferral:    (state) => { state.code = null; state.error = null; },
+    resetPayoutState: (state) => { state.payoutLoading = false; state.payoutError = null; state.payoutSuccess = false; },
   },
   extraReducers: (builder) => {
     builder
@@ -75,9 +93,15 @@ const referralsSlice = createSlice({
       .addCase(fetchDashboard.rejected,  (state, action: PayloadAction<unknown>) => {
         state.loading = false;
         state.error   = action.payload as string;
+      })
+      .addCase(requestPayout.pending,   (state) => { state.payoutLoading = true; state.payoutError = null; state.payoutSuccess = false; })
+      .addCase(requestPayout.fulfilled, (state) => { state.payoutLoading = false; state.payoutSuccess = true; })
+      .addCase(requestPayout.rejected,  (state, action: PayloadAction<unknown>) => {
+        state.payoutLoading = false;
+        state.payoutError   = action.payload as string;
       });
   },
 });
 
-export const { resetReferral } = referralsSlice.actions;
+export const { resetReferral, resetPayoutState } = referralsSlice.actions;
 export default referralsSlice.reducer;
