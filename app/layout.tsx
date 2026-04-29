@@ -1,9 +1,15 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Big_Shoulders_Inline } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
 import StoreProvider from "@/components/StoreProvider";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
+const bigShoulders = Big_Shoulders_Inline({
+  subsets: ["latin"],
+  weight: ["700"],
+  variable: "--font-logo",
+});
 
 export const metadata: Metadata = {
   title: "Viklance Orbit | Software Development Agency",
@@ -16,8 +22,9 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" className="scroll-smooth">
-      <body className={inter.className}>
+      <body className={`${inter.className} ${bigShoulders.variable}`}>
         <StoreProvider>{children}</StoreProvider>
+        <Analytics />
       </body>
     </html>
   );

@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Footer from "@/components/Footer";
+import ViklanceLogo from "@/components/ViklanceLogo";
 
 const links = [
   { label: "Services", href: "#services" },
@@ -52,13 +53,8 @@ export default function Navbar() {
         }`}
       >
         <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 h-16 flex items-center justify-between">
-          <button
-            onClick={() => go("/")}
-            className={`text-sm font-black tracking-widest uppercase transition-colors ${
-              scrolled ? "text-neutral-900" : "text-neutral-900"
-            }`}
-          >
-            Viklance Orbit
+          <button onClick={() => go("/")}>
+            <ViklanceLogo className="h-8 w-auto text-neutral-900" />
           </button>
 
           <nav className="hidden md:flex items-center gap-8">
