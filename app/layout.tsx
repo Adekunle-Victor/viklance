@@ -11,10 +11,35 @@ const bigShoulders = Big_Shoulders_Inline({
   variable: "--font-logo",
 });
 
+const SITE_URL = "https://www.viklanceorbit.com";
+const DEFAULT_TITLE = "Viklance Orbit | Software Development Agency";
+const DEFAULT_DESCRIPTION =
+  "We build exceptional digital products. From concept to launch, we craft software that drives growth.";
+
 export const metadata: Metadata = {
-  title: "Viklance Orbit | Software Development Agency",
-  description:
-    "We build exceptional digital products. From concept to launch, we craft software that drives growth.",
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: DEFAULT_TITLE,
+    template: "%s | Viklance Orbit",
+  },
+  description: DEFAULT_DESCRIPTION,
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    siteName: "Viklance Orbit",
+    url: SITE_URL,
+    title: DEFAULT_TITLE,
+    description: DEFAULT_DESCRIPTION,
+    images: [{ url: "/og.png", width: 1200, height: 630, alt: "Viklance Orbit" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    site: "@viklance",
+    creator: "@viklance",
+    title: DEFAULT_TITLE,
+    description: DEFAULT_DESCRIPTION,
+    images: ["/og.png"],
+  },
 };
 
 export default function RootLayout({

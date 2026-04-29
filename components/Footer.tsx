@@ -12,6 +12,9 @@ export default function Footer() {
           <a href="/refer" className="text-[12px] text-neutral-400 hover:text-white transition-colors font-semibold">
             Referral Program
           </a>
+          <a href="/careers" className="text-[12px] text-neutral-400 hover:text-white transition-colors font-semibold">
+            Careers
+          </a>
           {["Twitter", "LinkedIn", "GitHub"].map((s) => (
             <a key={s} href="#" className="text-[12px] text-neutral-600 hover:text-white transition-colors">
               {s}

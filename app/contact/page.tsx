@@ -1,7 +1,28 @@
+import type { Metadata } from "next";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ContactForm from "@/components/ContactForm";
 import { channels } from "@/lib/contact-channels";
+
+export const metadata: Metadata = {
+  title: "Contact",
+  description:
+    "Tell us about your project. We typically respond within a few hours and we're always honest about fit.",
+  openGraph: {
+    type: "website",
+    url: "https://www.viklanceorbit.com/contact",
+    title: "Contact | Viklance Orbit",
+    description:
+      "Tell us about your project. We typically respond within a few hours and we're always honest about fit.",
+    images: [{ url: "/og.png", width: 1200, height: 630, alt: "Viklance Orbit" }],
+  },
+  twitter: {
+    title: "Contact | Viklance Orbit",
+    description:
+      "Tell us about your project. We typically respond within a few hours and we're always honest about fit.",
+    images: ["/og.png"],
+  },
+};
 
 const steps = [
   { num: "01", title: "We review your message",        desc: "We read every inquiry personally, no auto-responses, no gatekeeping VA." },
