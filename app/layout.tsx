@@ -40,6 +40,9 @@ export const metadata: Metadata = {
     description: DEFAULT_DESCRIPTION,
     images: ["/og.png"],
   },
+  verification: {
+    google: "QaFZusMRf6Rq7QWyaHhAdk8zi5EmGQ_XManhxHV5rgQ",
+  },
 };
 
 export default function RootLayout({
