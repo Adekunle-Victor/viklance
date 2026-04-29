@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
@@ -166,7 +167,7 @@ export default function CareersPage() {
                 If you&apos;re looking to build something, not join us we&apos;d love to hear about it.
               </p>
             </div>
-            <a
+            <Link
               href="/contact"
               className="shrink-0 inline-flex items-center gap-2 bg-white text-neutral-900 font-bold px-8 py-4 rounded-full text-sm hover:bg-neutral-200 transition-colors"
             >
@@ -174,7 +175,7 @@ export default function CareersPage() {
               <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
                 <path d="M2.5 7h9M8 3.5L11.5 7 8 10.5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
-            </a>
+            </Link>
           </div>
         </section>
       </main>

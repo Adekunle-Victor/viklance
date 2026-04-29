@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import Footer from "@/components/Footer";
 import ViklanceLogo from "@/components/ViklanceLogo";
 
@@ -14,6 +15,7 @@ const links = [
 ];
 
 export default function Navbar() {
+  const router = useRouter();
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
 
@@ -31,12 +33,12 @@ export default function Navbar() {
   const go = (href: string) => {
     setOpen(false);
     if (href.startsWith("/")) {
-      window.location.href = href;
+      router.push(href);
       return;
     }
     // anchor link — if not on home page, navigate there first
     if (window.location.pathname !== "/") {
-      window.location.href = `/${href}`;
+      router.push(`/${href}`);
       return;
     }
     setTimeout(() => {

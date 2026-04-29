@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function Footer() {
   return (
     <footer className="bg-neutral-950 border-t border-neutral-800 py-10">
@@ -9,12 +11,12 @@ export default function Footer() {
           © {new Date().getFullYear()} Viklance Orbit. All rights reserved.
         </p>
         <div className="flex items-center gap-6">
-          <a href="/refer" className="text-[12px] text-neutral-400 hover:text-white transition-colors font-semibold">
+          <Link href="/refer" className="text-[12px] text-neutral-400 hover:text-white transition-colors font-semibold">
             Referral Program
-          </a>
-          <a href="/careers" className="text-[12px] text-neutral-400 hover:text-white transition-colors font-semibold">
+          </Link>
+          <Link href="/careers" className="text-[12px] text-neutral-400 hover:text-white transition-colors font-semibold">
             Careers
-          </a>
+          </Link>
           {["Twitter", "LinkedIn", "GitHub"].map((s) => (
             <a key={s} href="#" className="text-[12px] text-neutral-600 hover:text-white transition-colors">
               {s}
