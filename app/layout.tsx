@@ -12,9 +12,9 @@ const bigShoulders = Big_Shoulders_Inline({
 });
 
 const SITE_URL = "https://www.viklanceorbit.com";
-const DEFAULT_TITLE = "Viklance Orbit | Software Development Agency";
+const DEFAULT_TITLE = "Viklance Orbit | Custom Software Development Agency";
 const DEFAULT_DESCRIPTION =
-  "We build exceptional digital products. From concept to launch, we craft software that drives growth.";
+  "We build exceptional digital products for startups and scale-ups. From concept to launch, we design and engineer software that drives real growth.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
