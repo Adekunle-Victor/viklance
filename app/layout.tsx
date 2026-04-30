@@ -34,8 +34,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    site: "@viklance",
-    creator: "@viklance",
+    site: "@vicklance_orbit",
+    creator: "@vicklance_orbit",
     title: DEFAULT_TITLE,
     description: DEFAULT_DESCRIPTION,
     images: ["/og.png"],

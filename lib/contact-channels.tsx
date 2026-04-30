@@ -4,7 +4,7 @@ export const channels = [
     icon: <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 4.5l6 4.5 6-4.5M2 4.5h12v8H2v-8z" stroke="currentColor" strokeWidth="1.3" strokeLinejoin="round" /></svg>,
   },
   {
-    label: "X", value: "@viklance", href: "https://twitter.com/viklance",
+    label: "X", value: "@vicklance_orbit", href: "https://x.com/vicklance_orbit",
     icon: <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 2.5h3.5L14 13.5h-3.5L2 2.5z" stroke="currentColor" strokeWidth="1.3" strokeLinejoin="round" strokeLinecap="round" /><path d="M2 13.5l4.5-4.5M14 2.5l-4.5 4.5" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" /></svg>,
   },
   {
