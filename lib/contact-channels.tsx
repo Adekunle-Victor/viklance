@@ -1,6 +1,6 @@
 export const channels = [
   {
-    label: "Email", value: "hello@viklance.com", href: "mailto:hello@viklance.com",
+    label: "Email", value: "hello@viklanceorbit.com", href: "mailto:hello@viklanceorbit.com",
     icon: <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 4.5l6 4.5 6-4.5M2 4.5h12v8H2v-8z" stroke="currentColor" strokeWidth="1.3" strokeLinejoin="round" /></svg>,
   },
   {

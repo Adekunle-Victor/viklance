@@ -130,10 +130,10 @@ export default function CareersPage() {
                       Send your CV to
                     </p>
                     <a
-                      href="mailto:hello@viklance.com?subject=Speculative Application"
+                      href="mailto:hello@viklanceorbit.com?subject=Speculative Application"
                       className="text-xl font-black text-neutral-900 hover:underline underline-offset-4 tracking-tight"
                     >
-                      hello@viklance.com
+                      hello@viklanceorbit.com
                     </a>
                   </div>
                   <p className="text-sm text-neutral-600 leading-relaxed">
@@ -142,7 +142,7 @@ export default function CareersPage() {
                     letter template needed just be direct.
                   </p>
                   <a
-                    href="mailto:hello@viklance.com?subject=Speculative Application"
+                    href="mailto:hello@viklanceorbit.com?subject=Speculative Application"
                     className="self-start inline-flex items-center gap-2 bg-neutral-900 text-white font-bold px-6 py-3.5 rounded-full text-sm hover:bg-neutral-700 transition-colors"
                   >
                     Send application
